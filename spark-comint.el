@@ -5,6 +5,7 @@
 (require 'ansi-color)
 (require 'comint)
 (require 'compile)
+(require 'sbt-mode-project)
 
 (defvar-local spark-package nil)
 (defvar-local spark-main-class nil)
@@ -27,7 +28,7 @@
 
 (defun spark-comint--get-buffer-name ()
   "Return buffer name for spark-submit's stdout/stderr output."
-  (format "*spark-submit*"))
+  (format "*spark-submit %s*" (sbt:find-root)))
 
 (defun spark-comint--run (package main-class arguments)
   "Run spark job in comint mode.
